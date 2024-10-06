@@ -18,11 +18,41 @@ const gameName = "Rat Gains Clicker";
 document.title = gameName;
 
 const availableItems: Item[] = [
-  { label: "Buy Rat Wheel", cost: 10, rate: 0.1, amount: 0, desc: "a rat treadmill used to train cardiovascular health" },
-  { label: "Buy Lab Blocks", cost: 100, rate: 2, amount: 0, desc: "lab-created blocks of food and all necessary nutrition for an adult rat" },
-  { label: "Buy Rat-Sized Barbells", cost: 1000, rate: 50, amount: 0, desc: "barbell weights for muscle gainz" },
-  { label: "Buy Rat Creatine", cost: 10000, rate: 100, amount: 0, desc: "supplement for optimal muscle growth" },
-  { label: "Buy Rat Steroids", cost: 1000000, rate: 5000, amount: 0, desc: "bro you're too far gone..." },
+  {
+    label: "Buy Rat Wheel",
+    cost: 10,
+    rate: 0.1,
+    amount: 0,
+    desc: "a rat treadmill used to train cardiovascular health",
+  },
+  {
+    label: "Buy Lab Blocks",
+    cost: 100,
+    rate: 2,
+    amount: 0,
+    desc: "lab-created blocks of food and all necessary nutrition for an adult rat",
+  },
+  {
+    label: "Buy Rat-Sized Barbells",
+    cost: 1000,
+    rate: 50,
+    amount: 0,
+    desc: "barbell weights for muscle gainz",
+  },
+  {
+    label: "Buy Rat Creatine",
+    cost: 10000,
+    rate: 100,
+    amount: 0,
+    desc: "supplement for optimal muscle growth",
+  },
+  {
+    label: "Buy Rat Steroids",
+    cost: 1000000,
+    rate: 5000,
+    amount: 0,
+    desc: "bro you're too far gone...",
+  },
 ];
 
 const ratButtName = "🐀";
@@ -141,16 +171,16 @@ barButton.addEventListener("click", () => {
 });
 
 crButton.addEventListener("click", () => {
-    creatine.amount++;
-    crCount.innerHTML = "# of Creatine: " + creatine.amount;
-    counter -= creatine.cost;
-    growthRate += creatine.rate;
-    txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
-    creatine.cost *= 1.15;
-    crButton.innerHTML = creatine.label + " $" + creatine.cost.toFixed(2);
-    requestAnimationFrame(animCounter);
-    crButton.disabled = true;
-  });
+  creatine.amount++;
+  crCount.innerHTML = "# of Creatine: " + creatine.amount;
+  counter -= creatine.cost;
+  growthRate += creatine.rate;
+  txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
+  creatine.cost *= 1.15;
+  crButton.innerHTML = creatine.label + " $" + creatine.cost.toFixed(2);
+  requestAnimationFrame(animCounter);
+  crButton.disabled = true;
+});
 
 stButton.addEventListener("click", () => {
   steroids.amount++;
@@ -174,31 +204,31 @@ function updateDisplay() {
 
   if (counter >= wheel.cost) {
     wheelButton.disabled = false;
-  }else{
+  } else {
     wheelButton.disabled = true;
   }
 
   if (counter >= block.cost) {
     blockButton.disabled = false;
-  }else{
+  } else {
     blockButton.disabled = true;
   }
 
   if (counter >= bar.cost) {
     barButton.disabled = false;
-  }else{
+  } else {
     barButton.disabled = true;
   }
 
   if (counter >= creatine.cost) {
     crButton.disabled = false;
-  }else{
+  } else {
     crButton.disabled = true;
   }
 
   if (counter >= steroids.cost) {
     stButton.disabled = false;
-  }else{
+  } else {
     stButton.disabled = true;
   }
 }
