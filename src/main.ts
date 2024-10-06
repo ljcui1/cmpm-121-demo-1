@@ -30,6 +30,6 @@ info.append(countTxt);
 app.append(info);
 
 ratButton.addEventListener("click", () => {
-    counter++;
-    countTxt.innerHTML = "Rat Counter: " + counter;
+  counter++;
+  countTxt.innerHTML = "Rat Counter: " + counter;
 });
