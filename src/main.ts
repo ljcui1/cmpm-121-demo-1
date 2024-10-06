@@ -6,25 +6,30 @@ const countInfo: HTMLDivElement = document.createElement("div");
 const upgrades: HTMLDivElement = document.createElement("div");
 const upgradeInfo: HTMLDivElement = document.createElement("div");
 
+interface Item{
+    label: string,
+    cost: number,
+    rate: number,
+    amount: number
+};
+
 const gameName = "Rat Gains Clicker";
 document.title = gameName;
 
+const availableItems : Item[] = [
+    {label: "Buy Rat Wheel", cost: 10, rate: 0.1, amount: 0},
+    {label: "Buy Lab Blocks", cost: 100, rate: 2, amount: 0},
+    {label: "Buy Rat-Sized Barbells", cost: 1000, rate: 50, amount: 0}
+];
+
 const ratButtName = "🐀";
-const wheelName = "Buy Rat Wheel";
-const blockName = "Buy Lab Blocks";
-const barName = "Buy Rat-Sized Barbells";
+const wheel = availableItems[0];
+const block = availableItems[1];
+const bar = availableItems[2];
 
 let counter: number = 0;
 let lastFrame: number = 0;
 let growthRate: number = 1;
-
-let wheelNum = 0;
-let blockNum = 0;
-let barNum = 0;
-
-let wheelPrice = 10;
-let blockPrice = 100;
-let barPrice = 1000;
 
 const header = document.createElement("h1");
 header.innerHTML = gameName;
@@ -44,25 +49,25 @@ countInfo.append(countTxt);
 app.append(countInfo);
 
 const wheelButton: HTMLButtonElement = document.createElement("button");
-wheelButton.innerHTML = wheelName + " $" + wheelPrice.toFixed(2);
+wheelButton.innerHTML = wheel.label + " $" + wheel.cost.toFixed(2);
 upgrades.append(wheelButton);
 const wheelCount = document.createElement("h3");
-wheelCount.innerHTML = "# of Wheels: " + wheelNum;
+wheelCount.innerHTML = "# of Wheels: " + wheel.amount;
 upgradeInfo.append(wheelCount);
 
 const blockButton: HTMLButtonElement = document.createElement("button");
-blockButton.innerHTML = blockName + " $" + blockPrice.toFixed(2);
+blockButton.innerHTML = block.label + " $" + block.cost.toFixed(2);
 upgrades.append(blockButton);
 const blockCount = document.createElement("h3");
-blockCount.innerHTML = "# of Blocks: " + blockNum;
+blockCount.innerHTML = "# of Blocks: " + block.amount;
 upgradeInfo.append(blockCount);
 
 const barButton: HTMLButtonElement = document.createElement("button");
-barButton.innerHTML = barName + " $" + barPrice.toFixed(2);
+barButton.innerHTML = bar.label + " $" + bar.cost.toFixed(2);
 upgrades.append(barButton);
 app.append(upgrades);
 const barCount = document.createElement("h3");
-barCount.innerHTML = "# of Barbells: " + barNum;
+barCount.innerHTML = "# of Barbells: " + bar.amount;
 upgradeInfo.append(barCount);
 app.append(upgradeInfo);
 
@@ -72,37 +77,37 @@ barButton.disabled = true;
 
 ratButton.addEventListener("click", updateCounter);
 wheelButton.addEventListener("click", () => {
-  wheelNum++;
-  wheelCount.innerHTML = "# of Wheels: " + wheelNum;
-  counter -= 10;
-  growthRate += 0.1;
+  wheel.amount++;
+  wheelCount.innerHTML = "# of Wheels: " + wheel.amount;
+  counter -= wheel.cost;
+  growthRate += wheel.rate;
   txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
-  wheelPrice *= 1.15;
-  wheelButton.innerHTML = wheelName + " $" + wheelPrice.toFixed(2);
+  wheel.cost *= 1.15;
+  wheelButton.innerHTML = wheel.label + " $" + wheel.cost.toFixed(2);
   requestAnimationFrame(animCounter);
   wheelButton.disabled = true;
 });
 
 blockButton.addEventListener("click", () => {
-  blockNum++;
-  blockCount.innerHTML = "# of Blocks: " + blockNum;
-  counter -= 100;
-  growthRate += 2;
+  block.amount++;
+  blockCount.innerHTML = "# of Blocks: " + block.amount;
+  counter -= block.cost;
+  growthRate += block.rate;
   txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
-  blockPrice *= 1.15;
-  blockButton.innerHTML = blockName + " $" + blockPrice.toFixed(2);
+  block.cost *= 1.15;
+  blockButton.innerHTML = block.label + " $" + block.cost.toFixed(2);
   requestAnimationFrame(animCounter);
   wheelButton.disabled = true;
 });
 
 barButton.addEventListener("click", () => {
-  barNum++;
-  barCount.innerHTML = "# of Barbells: " + barNum;
-  counter -= 1000;
-  growthRate += 50;
+  bar.amount++;
+  barCount.innerHTML = "# of Barbells: " + bar.amount;
+  counter -= bar.cost;
+  growthRate += bar.rate;
   txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
-  barPrice *= 1.15;
-  barButton.innerHTML = barName + " $" + barPrice.toFixed(2);
+  bar.cost *= 1.15;
+  barButton.innerHTML = bar.label + " $" + bar.cost.toFixed(2);
   requestAnimationFrame(animCounter);
   wheelButton.disabled = true;
 });
@@ -115,15 +120,15 @@ function updateCounter() {
 function updateDisplay() {
   countTxt.innerHTML = "Rat Counter: " + counter.toFixed(2);
 
-  if (counter >= wheelPrice) {
+  if (counter >= wheel.cost) {
     wheelButton.disabled = false;
   }
 
-  if (counter >= blockPrice) {
+  if (counter >= block.cost) {
     blockButton.disabled = false;
   }
 
-  if (counter >= barPrice) {
+  if (counter >= bar.cost) {
     barButton.disabled = false;
   }
 }
