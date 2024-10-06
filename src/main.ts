@@ -41,39 +41,37 @@ wheelButton.disabled = true;
 
 ratButton.addEventListener("click", updateCounter);
 wheelButton.addEventListener("click", () => {
-    counter -= 10;
-    growthRate++;
-    requestAnimationFrame(animCounter);
-    wheelButton.disabled = true;
+  counter -= 10;
+  growthRate++;
+  requestAnimationFrame(animCounter);
+  wheelButton.disabled = true;
 });
 
 function updateCounter() {
-    counter++;
-    updateDisplay();
+  counter++;
+  updateDisplay();
 }
 
-function updateDisplay(){
-    countTxt.innerHTML = "Rat Counter: " + counter.toFixed(2);
+function updateDisplay() {
+  countTxt.innerHTML = "Rat Counter: " + counter.toFixed(2);
 
-    if(counter >= 10){
-        wheelButton.disabled = false;
-    }
+  if (counter >= 10) {
+    wheelButton.disabled = false;
+  }
 }
 
 function animCounter() {
-    const curr = Date.now();
-    if (lastFrame === 0) {
-        lastFrame = curr;
-    }
-
-    const elapsed = curr - lastFrame;
-    //console.log(elapsed);
-
-    counter += growthRate * (elapsed / 1000);
-    updateDisplay();
-
+  const curr = Date.now();
+  if (lastFrame === 0) {
     lastFrame = curr;
-    requestAnimationFrame(animCounter);
+  }
+
+  const elapsed = curr - lastFrame;
+  //console.log(elapsed);
+
+  counter += growthRate * (elapsed / 1000);
+  updateDisplay();
+
+  lastFrame = curr;
+  requestAnimationFrame(animCounter);
 }
-
-
