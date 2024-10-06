@@ -29,7 +29,11 @@ countTxt.innerHTML = "Rat Counter: " + counter;
 info.append(countTxt);
 app.append(info);
 
-ratButton.addEventListener("click", () => {
-  counter++;
-  countTxt.innerHTML = "Rat Counter: " + counter;
-});
+ratButton.addEventListener("click", updateCounter);
+
+setInterval(updateCounter, 1000);
+
+function updateCounter(){
+    counter++;
+    countTxt.innerHTML = "Rat Counter: " + counter;
+}
