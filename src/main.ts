@@ -5,7 +5,7 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 const gameName = "My Stinky game";
 document.title = gameName;
 
-let desc_1 = "testing github pages update"
+const desc_1 = "testing github pages update";
 
 const header = document.createElement("h1");
 header.innerHTML = gameName;
