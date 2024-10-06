@@ -60,7 +60,7 @@ app.append(upgrades);
 const barCount = document.createElement("h3");
 barCount.innerHTML = "# of Barbells: " + barNum;
 upgradeInfo.append(barCount);
-app.append(upgradeInfo)
+app.append(upgradeInfo);
 
 wheelButton.disabled = true;
 blockButton.disabled = true;
@@ -68,33 +68,33 @@ barButton.disabled = true;
 
 ratButton.addEventListener("click", updateCounter);
 wheelButton.addEventListener("click", () => {
-    wheelNum++;
-    wheelCount.innerHTML = "# of Wheels: " + wheelNum;
-    counter -= 10;
-    growthRate += 0.1;
-    txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
-    requestAnimationFrame(animCounter);
-    wheelButton.disabled = true;
+  wheelNum++;
+  wheelCount.innerHTML = "# of Wheels: " + wheelNum;
+  counter -= 10;
+  growthRate += 0.1;
+  txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
+  requestAnimationFrame(animCounter);
+  wheelButton.disabled = true;
 });
 
 blockButton.addEventListener("click", () => {
-    blockNum++;
-    blockCount.innerHTML = "# of Blocks: " + blockNum;
-    counter -= 100;
-    growthRate += 2;
-    txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
-    requestAnimationFrame(animCounter);
-    wheelButton.disabled = true;
+  blockNum++;
+  blockCount.innerHTML = "# of Blocks: " + blockNum;
+  counter -= 100;
+  growthRate += 2;
+  txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
+  requestAnimationFrame(animCounter);
+  wheelButton.disabled = true;
 });
 
 barButton.addEventListener("click", () => {
-    barNum++;
-    barCount.innerHTML = "# of Barbells: " + barNum;
-    counter -= 1000;
-    growthRate += 50;
-    txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
-    requestAnimationFrame(animCounter);
-    wheelButton.disabled = true;
+  barNum++;
+  barCount.innerHTML = "# of Barbells: " + barNum;
+  counter -= 1000;
+  growthRate += 50;
+  txt.innerHTML = "Rat Growth Rate: " + growthRate.toFixed(1) + " gains/sec";
+  requestAnimationFrame(animCounter);
+  wheelButton.disabled = true;
 });
 
 function updateCounter() {
@@ -109,11 +109,11 @@ function updateDisplay() {
     wheelButton.disabled = false;
   }
 
-  if(counter >= 100){
+  if (counter >= 100) {
     blockButton.disabled = false;
   }
 
-  if(counter >= 1000){
+  if (counter >= 1000) {
     barButton.disabled = false;
   }
 }
