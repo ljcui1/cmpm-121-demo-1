@@ -33,7 +33,7 @@ ratButton.addEventListener("click", updateCounter);
 
 setInterval(updateCounter, 1000);
 
-function updateCounter(){
-    counter++;
-    countTxt.innerHTML = "Rat Counter: " + counter;
+function updateCounter() {
+  counter++;
+  countTxt.innerHTML = "Rat Counter: " + counter;
 }
