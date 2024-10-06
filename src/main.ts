@@ -6,20 +6,20 @@ const countInfo: HTMLDivElement = document.createElement("div");
 const upgrades: HTMLDivElement = document.createElement("div");
 const upgradeInfo: HTMLDivElement = document.createElement("div");
 
-interface Item{
-    label: string,
-    cost: number,
-    rate: number,
-    amount: number
-};
+interface Item {
+  label: string;
+  cost: number;
+  rate: number;
+  amount: number;
+}
 
 const gameName = "Rat Gains Clicker";
 document.title = gameName;
 
-const availableItems : Item[] = [
-    {label: "Buy Rat Wheel", cost: 10, rate: 0.1, amount: 0},
-    {label: "Buy Lab Blocks", cost: 100, rate: 2, amount: 0},
-    {label: "Buy Rat-Sized Barbells", cost: 1000, rate: 50, amount: 0}
+const availableItems: Item[] = [
+  { label: "Buy Rat Wheel", cost: 10, rate: 0.1, amount: 0 },
+  { label: "Buy Lab Blocks", cost: 100, rate: 2, amount: 0 },
+  { label: "Buy Rat-Sized Barbells", cost: 1000, rate: 50, amount: 0 },
 ];
 
 const ratButtName = "🐀";
