@@ -36,21 +36,20 @@ function updateCounter() {
   countTxt.innerHTML = "Rat Counter: " + counter;
 }
 
-function animCounter(){
-    const curr = Date.now();
-    if(lastFrame === 0){
-        lastFrame = curr;
-    }
-    
-    const elapsed = curr - lastFrame;
-    console.log(elapsed);
-
-    counter += (elapsed / 1000);
-    countTxt.innerHTML = "Rat Counter: " + counter.toFixed(2);
-
+function animCounter() {
+  const curr = Date.now();
+  if (lastFrame === 0) {
     lastFrame = curr;
-    requestAnimationFrame(animCounter);
-};
+  }
+
+  const elapsed = curr - lastFrame;
+  console.log(elapsed);
+
+  counter += elapsed / 1000;
+  countTxt.innerHTML = "Rat Counter: " + counter.toFixed(2);
+
+  lastFrame = curr;
+  requestAnimationFrame(animCounter);
+}
 
 requestAnimationFrame(animCounter);
-
