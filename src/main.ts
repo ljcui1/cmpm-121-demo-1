@@ -10,7 +10,7 @@ const desc_1 = "testing github pages update";
 
 const ratButtName = "🐀";
 let counter: number = 0;
-
+let lastFrame: number = 0;
 const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
@@ -31,9 +31,26 @@ app.append(info);
 
 ratButton.addEventListener("click", updateCounter);
 
-setInterval(updateCounter, 1000);
-
 function updateCounter() {
   counter++;
   countTxt.innerHTML = "Rat Counter: " + counter;
 }
+
+function animCounter(){
+    const curr = Date.now();
+    if(lastFrame === 0){
+        lastFrame = curr;
+    }
+    
+    const elapsed = curr - lastFrame;
+    console.log(elapsed);
+
+    counter += (elapsed / 1000);
+    countTxt.innerHTML = "Rat Counter: " + counter.toFixed(2);
+
+    lastFrame = curr;
+    requestAnimationFrame(animCounter);
+};
+
+requestAnimationFrame(animCounter);
+
