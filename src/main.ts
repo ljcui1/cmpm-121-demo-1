@@ -1,7 +1,7 @@
 import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
-const info: HTMLDivElement = document.createElement("div");
+const countInfo: HTMLDivElement = document.createElement("div");
 
 const upgrades: HTMLDivElement = document.createElement("div");
 const upgradeInfo: HTMLDivElement = document.createElement("div");
@@ -40,8 +40,8 @@ app.append(ratButton);
 
 const countTxt = document.createElement("h2");
 countTxt.innerHTML = "Rat Counter: " + counter;
-info.append(countTxt);
-app.append(info);
+countInfo.append(countTxt);
+app.append(countInfo);
 
 const wheelButton: HTMLButtonElement = document.createElement("button");
 wheelButton.innerHTML = wheelName + " $" + wheelPrice.toFixed(2);
