@@ -92,7 +92,7 @@ function updateDisplay() {
   buttons.forEach((button, index) => {
     const item = availableItems[index];
     button.disabled = counter < item.cost;
-  })
+  });
 }
 
 function animCounter() {
@@ -111,21 +111,21 @@ function animCounter() {
   requestAnimationFrame(animCounter);
 }
 
-function createUpgradeButtons(item: Item){
+function createUpgradeButtons(item: Item) {
   const button = document.createElement("button");
   button.innerHTML = `${item.label} $${item.cost.toFixed(2)}`;
   button.title = item.desc;
   button.disabled = true;
 
   const itemCounter = document.createElement("h3");
-  itemCounter.innerHTML = `# of ${item.label.split(' ').slice(1).join(' ')}: ${item.amount}`;
+  itemCounter.innerHTML = `# of ${item.label.split(" ").slice(1).join(" ")}: ${item.amount}`;
 
   button.addEventListener("click", () => {
     item.amount++;
-    itemCounter.innerHTML = `# of ${item.label.split(' ').slice(1).join(' ')}: ${item.amount}`;
+    itemCounter.innerHTML = `# of ${item.label.split(" ").slice(1).join(" ")}: ${item.amount}`;
     counter -= item.cost;
     growthRate += item.rate;
-    txt.innerHTML =  `Rat Growth Rate: ${growthRate.toFixed(1)} gains/sec`;
+    txt.innerHTML = `Rat Growth Rate: ${growthRate.toFixed(1)} gains/sec`;
     item.cost *= 1.15;
     button.innerHTML = `${item.label} $${item.cost.toFixed(2)}`;
     button.disabled = true;
