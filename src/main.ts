@@ -18,11 +18,41 @@ const gameName = "Rat Gains Clicker";
 document.title = gameName;
 
 const availableItems: Item[] = [
-  {label: "Buy Rat Wheels", cost: 10, rate: 0.1, amount: 0, desc: "a rat treadmill used to train cardiovascular health",},
-  {label: "Buy Lab Blocks", cost: 100, rate: 2, amount: 0, desc: "lab-created blocks of food and all necessary nutrition for an adult rat",},
-  {label: "Buy Rat-Sized Barbells", cost: 1000, rate: 50, amount: 0, desc: "barbell weights for muscle gainz",},
-  {label: "Buy Rat Creatine", cost: 10000, rate: 100, amount: 0, desc: "supplement for optimal muscle growth",},
-  {label: "Buy Rat Steroids", cost: 1000000, rate: 5000, amount: 0, desc: "bro you're too far gone...",},
+  {
+    label: "Buy Rat Wheels",
+    cost: 10,
+    rate: 0.1,
+    amount: 0,
+    desc: "a rat treadmill used to train cardiovascular health",
+  },
+  {
+    label: "Buy Lab Blocks",
+    cost: 100,
+    rate: 2,
+    amount: 0,
+    desc: "lab-created blocks of food and all necessary nutrition for an adult rat",
+  },
+  {
+    label: "Buy Rat-Sized Barbells",
+    cost: 1000,
+    rate: 50,
+    amount: 0,
+    desc: "barbell weights for muscle gainz",
+  },
+  {
+    label: "Buy Rat Creatine",
+    cost: 10000,
+    rate: 100,
+    amount: 0,
+    desc: "supplement for optimal muscle growth",
+  },
+  {
+    label: "Buy Rat Steroids",
+    cost: 1000000,
+    rate: 5000,
+    amount: 0,
+    desc: "bro you're too far gone...",
+  },
 ];
 
 let counter: number = 0;
@@ -81,7 +111,7 @@ function createUpgradeButtons(item: Item) {
   return button;
 }
 
-function updateButtonDisplay(button: HTMLButtonElement, item: Item){
+function updateButtonDisplay(button: HTMLButtonElement, item: Item) {
   button.innerHTML = `${item.label} $${item.cost.toFixed(2)}`;
   button.disabled = counter < item.cost;
 }
