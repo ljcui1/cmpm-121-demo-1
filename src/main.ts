@@ -18,41 +18,11 @@ const gameName = "Rat Gains Clicker";
 document.title = gameName;
 
 const availableItems: Item[] = [
-  {
-    label: "Buy Rat Wheels",
-    cost: 10,
-    rate: 0.1,
-    amount: 0,
-    desc: "a rat treadmill used to train cardiovascular health",
-  },
-  {
-    label: "Buy Lab Blocks",
-    cost: 100,
-    rate: 2,
-    amount: 0,
-    desc: "lab-created blocks of food and all necessary nutrition for an adult rat",
-  },
-  {
-    label: "Buy Rat-Sized Barbells",
-    cost: 1000,
-    rate: 50,
-    amount: 0,
-    desc: "barbell weights for muscle gainz",
-  },
-  {
-    label: "Buy Rat Creatine",
-    cost: 10000,
-    rate: 100,
-    amount: 0,
-    desc: "supplement for optimal muscle growth",
-  },
-  {
-    label: "Buy Rat Steroids",
-    cost: 1000000,
-    rate: 5000,
-    amount: 0,
-    desc: "bro you're too far gone...",
-  },
+  {label: "Buy Rat Wheels", cost: 10, rate: 0.1, amount: 0, desc: "a rat treadmill used to train cardiovascular health",},
+  {label: "Buy Lab Blocks", cost: 100, rate: 2, amount: 0, desc: "lab-created blocks of food and all necessary nutrition for an adult rat",},
+  {label: "Buy Rat-Sized Barbells", cost: 1000, rate: 50, amount: 0, desc: "barbell weights for muscle gainz",},
+  {label: "Buy Rat Creatine", cost: 10000, rate: 100, amount: 0, desc: "supplement for optimal muscle growth",},
+  {label: "Buy Rat Steroids", cost: 1000000, rate: 5000, amount: 0, desc: "bro you're too far gone...",},
 ];
 
 let counter: number = 0;
@@ -86,8 +56,39 @@ ratButton.addEventListener("click", () => {
   updateDisplay();
 });
 
+function createUpgradeButtons(item: Item) {
+  const button = document.createElement("button");
+  button.innerHTML = `${item.label} $${item.cost.toFixed(2)}`;
+  button.title = item.desc;
+  button.disabled = true;
+
+  const itemCounter = document.createElement("h3");
+  itemCounter.innerHTML = `# of ${item.label.split(" ").slice(1).join(" ")}: ${item.amount}`;
+
+  button.addEventListener("click", () => {
+    item.amount++;
+    itemCounter.innerHTML = `# of ${item.label.split(" ").slice(1).join(" ")}: ${item.amount}`;
+    counter -= item.cost;
+    growthRate += item.rate;
+    item.cost *= 1.15;
+    updateButtonDisplay(button, item);
+    updateDisplay();
+    requestAnimationFrame(animCounter);
+  });
+
+  upgrades.append(button);
+  upgradeInfo.append(itemCounter);
+  return button;
+}
+
+function updateButtonDisplay(button: HTMLButtonElement, item: Item){
+  button.innerHTML = `${item.label} $${item.cost.toFixed(2)}`;
+  button.disabled = counter < item.cost;
+}
+
 function updateDisplay() {
   countTxt.innerHTML = `Rat Gainz Counter: ${counter.toFixed(2)}`;
+  txt.innerHTML = `Rat Growth Rate: ${growthRate.toFixed(1)} gains/sec`;
 
   buttons.forEach((button, index) => {
     const item = availableItems[index];
@@ -109,30 +110,4 @@ function animCounter() {
 
   lastFrame = curr;
   requestAnimationFrame(animCounter);
-}
-
-function createUpgradeButtons(item: Item) {
-  const button = document.createElement("button");
-  button.innerHTML = `${item.label} $${item.cost.toFixed(2)}`;
-  button.title = item.desc;
-  button.disabled = true;
-
-  const itemCounter = document.createElement("h3");
-  itemCounter.innerHTML = `# of ${item.label.split(" ").slice(1).join(" ")}: ${item.amount}`;
-
-  button.addEventListener("click", () => {
-    item.amount++;
-    itemCounter.innerHTML = `# of ${item.label.split(" ").slice(1).join(" ")}: ${item.amount}`;
-    counter -= item.cost;
-    growthRate += item.rate;
-    txt.innerHTML = `Rat Growth Rate: ${growthRate.toFixed(1)} gains/sec`;
-    item.cost *= 1.15;
-    button.innerHTML = `${item.label} $${item.cost.toFixed(2)}`;
-    button.disabled = true;
-    requestAnimationFrame(animCounter);
-  });
-
-  upgrades.append(button);
-  upgradeInfo.append(itemCounter);
-  return button;
 }
