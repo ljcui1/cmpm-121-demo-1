@@ -67,7 +67,9 @@ const txt = document.createElement("p");
 txt.innerHTML = "Rat Growth Rate: 0 gains/sec";
 app.append(txt);
 
-const ratButton: HTMLButtonElement = document.createElement("button");
+//changing button to text element cred to https://github.com/rozy-dixon/cmpm-121-demo-1/blob/main/src/main.ts
+const ratButton = document.createElement("h1");
+ratButton.id = "rat";
 ratButton.innerHTML = "🐀";
 app.append(ratButton);
 
