@@ -14,6 +14,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
+h1, h2, h3 {
+  color: black;
+  -webkit-text-stroke: 0.2px white;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
